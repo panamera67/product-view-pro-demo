@@ -1,0 +1,35 @@
+import express from "express";
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Endpoint racine
+app.get("/", (req, res) => {
+  res.send("🚀 MallWorld API en ligne !");
+});
+
+// Endpoint santé
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "ok" });
+});
+
+// Exemple endpoint produit
+app.get("/api/v1/products", (req, res) => {
+  res.json([
+    { id: 1, name: "Produit A", price: 10 },
+    { id: 2, name: "Produit B", price: 20 }
+  ]);
+});
+
+// Exemple endpoint centres commerciaux
+app.get("/api/v1/malls", (req, res) => {
+  res.json([
+    { id: 1, name: "Mall Alpha" },
+    { id: 2, name: "Mall Beta" }
+  ]);
+});
+
+// Démarrage du serveur
+app.listen(PORT, () => {
+  console.log(`✅ Serveur démarré sur le port ${PORT}`);
+});
